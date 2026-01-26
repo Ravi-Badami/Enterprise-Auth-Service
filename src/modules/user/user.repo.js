@@ -11,3 +11,7 @@ exports.addUsers=async(userData)=>{
 exports.findUserByEmail=async(email)=>{
   return await User.findOne({email});
 }
+
+exports.deleteUser=async(id)=>{
+  return await User.deleteOne(id);
+}
