@@ -10,16 +10,20 @@ const userSchema=new mongoose.Schema({
     required:[true,'Email is required'],
     unique:true,
     lowercase:true,
-    trim:true
+    trim:true,
+    match: [/^\S+@\S+\.\S+$/, 'Please provide valid email']
   },
   password:{
     type:String,
     required:[true,'Password is required'],
-    minlength:6
+        minlength: [6, 'Password must be at least 6 characters']
   },
   role:{
     type:String,
-    enum:['user','admin'],
+     enum: {
+      values: ['user', 'admin'],
+      message: '{VALUE} is not a valid role'
+    },
     default:'user'
   }
 },{

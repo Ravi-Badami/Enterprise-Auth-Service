@@ -63,8 +63,13 @@ src/
 - [x] **Database Schema**: Defined rigorous Mongoose schema with type safety, validations (email, required fields), and enum roles (`user`, `admin`).
 - [x] **API Routes**: Configured modular routing for user-related endpoints.
 - [x] **Data Fetching flow**: Implemented the full flow for `GET /users` (Controller -> Service -> Repo -> DB).
-- [ ] **Authentication**: JWT & Hash implementation (Dependencies installed).
-- [ ] **Validation Middleware**: Zod integration (File created).
+- [x] **Authentication**: Password hashing with `bcrypt`.
+- [x] **Validation Middleware**: Zod integration for input validation.
+
+### Core Features
+- [x] **Error Handling**: Centralized error middleware with custom `ApiError` class.
+- [x] **Security**: Input validation and password hashing.
+- [x] **CRUD Operations**: Complete Create, Read, Delete functionality.
 
 ## ⚡ Getting Started
 
@@ -115,6 +120,15 @@ docker-compose ps
 # View logs
 docker-compose logs -f
 ```
+
+## 🔌 API Reference
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/users` | Retrieve all users |
+| `GET` | `/users/:id` | Retrieve a single user by ID |
+| `POST` | `/users` | Create a new user (Validated + Hashed Password) |
+| `DELETE` | `/users/:id` | Delete a user by ID |
 
 ## ✨ Key Features
 
