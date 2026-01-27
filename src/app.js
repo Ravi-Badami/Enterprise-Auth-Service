@@ -3,9 +3,11 @@ const app=express();
 const userRoutes=require("./modules/user/user.routes");
 const { errorHandler,handleUnhandledRejection, handleUncaughtException } = require('./middlewares/error.middleware');
 const ApiError = require('./utils/ApiError');
+const requestTimeout = require('./middlewares/timeout.middleware');
 
 
 app.use(express.json());
+
 app.use(userRoutes);
 
 //404 handler (BEFORE error middleware)
