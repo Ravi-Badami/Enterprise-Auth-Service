@@ -1,8 +1,7 @@
 const User=require('./user.model')
 
-exports.findUsers=async()=>{
- return await User.findById(id).select('-password').lean();
-
+exports.findUsers = async () => {
+  return await User.find().select('-password').lean();
 }
 
 exports.createUser=async(userData)=>{
