@@ -6,7 +6,13 @@ const ApiError = require('./utils/ApiError');
 const requestTimeout = require('./middlewares/timeout.middleware');
 
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swagger');
+
 app.use(express.json());
+
+// Swagger Page
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use(userRoutes);
 
