@@ -13,10 +13,7 @@ exports.getUser = asyncHandler(async (req, res, next) => {
   res.status(200).send(getSingleUser);
 });
 
-exports.createUser = asyncHandler(async (req, res, next) => {
-  const newUser = await userService.createUser(req.body);
-  res.status(201).send(newUser);
-});
+
 
 exports.deleteUser = asyncHandler(async (req, res, next) => {
   const deleteUser = await userService.deleteUser(req.params.id);
