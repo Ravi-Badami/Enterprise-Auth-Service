@@ -26,6 +26,17 @@ const userSchema = new mongoose.Schema({
       message: '{VALUE} is not a valid role'
     },
     default: 'user'
+  },
+  refreshToken: {
+    type: String,
+    select: false // standard practice to hide tokens
+  },
+  isEmailVerified: {
+    type: Boolean,
+    default: false
+  },
+  lastLogin: {
+    type: Date
   }
 }, {
   timestamps: true
