@@ -1,6 +1,6 @@
 const userRepo = require('../user/user.repo');
 const authRepo=require('./auth.repo');
-
+const jwtUtils=require('../../utils/jwt.utils');
 const bcrypt = require('bcrypt');
 const ApiError = require('../../utils/ApiError');
 
@@ -10,18 +10,31 @@ exports.loginUser = async (userData) => {
   if (!email || !password) {
     throw ApiError.badRequest("Email and password are required");
   }
-  // 1. Get the user document (which includes the password field)
+
   const userWithPassword = await authRepo.findUserByEmailWithPassword(email);
   if (!userWithPassword) {
     throw ApiError.notFound("Invalid email or pass");
   }
-  // 2. Pass the PASSWORD STRING (userWithPassword.password) to bcrypt
+
   const isMatch = await bcrypt.compare(password, userWithPassword.password);
   if (!isMatch) {
     throw ApiError.notFound("Invalid email or pass");
   }
-  // 3. Return the email (do not use res.send() inside the service)
-  return userWithPassword.email;
+
+  const accessToken=jwtUtils.generateAccessToken(userWithPassword.id,userWithPassword.role);
+
+  const refreshToken=jwtUtils.generateRefreshToken(userWithPassword.id);
+
+  await authRepo.saveRefreshToken(userWithPassword.id,refreshToken);
+   return { 
+    accessToken, 
+    refreshToken,
+    user: {
+        id: userWithPassword._id, 
+        email: userWithPassword.email,
+        role: userWithPassword.role
+    }
+  };
 }
 
 exports.registerUser = async (userData) => {

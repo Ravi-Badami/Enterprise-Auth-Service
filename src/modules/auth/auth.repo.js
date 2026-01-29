@@ -9,3 +9,7 @@ exports.findUserByEmailWithPassword = async (email) => {
 }
 
 
+exports.saveRefreshToken=async(userId,refreshToken)=>{
+  return await User.findByIdAndUpdate(userId,{refreshToken},{new:true});
+}
+
