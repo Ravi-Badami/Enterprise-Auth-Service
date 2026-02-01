@@ -60,6 +60,16 @@ This codebase implements several advanced patterns to solve real-world productio
 -   **Theft Detection**: If an old token (outside grace period) is used, the system assumes theft and **revokes the entire family**, logging out both the attacker and the legitimate user.
 -   **Secure Logout**: Manually revokes the token family, strictly invalidating all refresh tokens for that session.
 
+### 6. Role-Based Access Control (RBAC)
+
+**Problem**: Unrestricted access allows any authenticated user to perform administrative actions (e.g., deleting other users).
+
+**Solution**: Implemented a dual-layer permission system.
+-   **Authentication Layer**: Verifies identity via JWT.
+-   **Authorization Layer**: Enforces granular permissions based on user roles (`user`, `admin`).
+    -   **Admin**: Full access to all resources.
+    -   **User**: Restricted access (can only view/edit their own profile).
+
 ---
 
 ## System Architecture
@@ -202,10 +212,10 @@ Interactive API documentation is available at:
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/api/v1/users` | List users with cursor/offset pagination strategies |
+| `GET` | `/api/v1/users` | List users (Admin Only) |
 | `POST` | `/api/v1/auth/register` | Create user (Rate-limited & Validated) |
-| `GET` | `/api/v1/users/:id` | Retrieve user profile by ID |
-| `DELETE` | `/api/v1/users/:id` | Delete user record |
+| `GET` | `/api/v1/users/:id` | Retrieve user profile (Owner or Admin) |
+| `DELETE` | `/api/v1/users/:id` | Delete user record (Admin Only) |
 | `POST` | `/api/v1/auth/login` | Login (Returns Access & Refresh Tokens) |
 | `POST` | `/api/v1/auth/refresh` | Rotate tokens using Token Families |
 | `POST` | `/api/v1/auth/logout` | Secure Logout (Revokes Token Family) |
