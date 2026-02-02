@@ -70,6 +70,17 @@ This codebase implements several advanced patterns to solve real-world productio
     -   **Admin**: Full access to all resources.
     -   **User**: Restricted access (can only view/edit their own profile).
 
+### 7. Structured Logging & Observability
+
+**Problem**: Standard `console.log` is synchronous, unstructured, and blocking, making production debugging and log analysis difficult.
+
+**Solution**: Integrated **Winston** for robust, multi-transport logging.
+-   **Structured JSON Output**: Logs are formatted as JSON for easy integration with observability stacks (ELK, Datadog).
+-   **Smart Transports**:
+    -   **Console**: Color-coded, human-readable logs for local development.
+    -   **File**: Persistent rotation-ready log files (`error.log`, `all.log`) for production auditing.
+-   **Request Profiling**: Automated middleware tracks every HTTP request's duration, status code, and method.
+
 ---
 
 ## System Architecture
@@ -137,6 +148,9 @@ This project utilizes a focused selection of production-proven libraries:
 ### Development Utilities
 -   **Nodemon**: Utility for automatic server restarts during development.
 -   **Jest**: JavaScript Testing Framework with a focus on simplicity.
+
+### Logging
+-   **Winston**: Versatile logging library supporting multiple transports (File, Console) and varying log levels.
 
 ---
 
