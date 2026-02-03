@@ -53,7 +53,7 @@ services:
       - redis
     networks:
       - user-api-network
-    command: npm run dev
+    # command: npm run dev
 
 # Define volumes
 volumes:

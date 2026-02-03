@@ -1,3 +1,17 @@
 docker compose up -d --build
 
 docker-compose up -d --build --force-recreate -V app
+
+
+Useful Commands for Monitoring and PM2 list
+docker exec -it user-api-app pm2 list
+
+
+Real-time Monitor (CPU/Memory per instance):
+docker exec -it user-api-app pm2 monit
+
+View Logs (Combined):See logs from all clustered instances to ensure they are handling requests.
+docker exec user-api-app pm2 logs
+
+Reload with Zero Downtime (after code changes):
+docker exec user-api-app pm2 reload ecosystem.config.js

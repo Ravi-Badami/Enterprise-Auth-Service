@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install && npm install pm2 -gl
 
 # Copy source code
 COPY . .
@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5000
 
 # Start application
-CMD ["npm", "run", "dev"]
+CMD ["pm2-runtime", "start", "ecosystem.config.js"]
