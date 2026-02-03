@@ -97,6 +97,15 @@ This codebase implements several advanced patterns to solve real-world productio
 -   **Logout Action**: On logout, the Access Token is added to Redis with a TTL equal to its remaining validity.
 -   **Security Check**: Authentication middleware checks this blocklist on every request, instantly rejecting revoked tokens even if their signature is valid.
 
+### 10. Horizontal Scaling & Process Management
+
+**Problem**: Node.js is single-threaded by default, utilizing only one CPU core even on multi-core servers. This limits throughput and fault tolerance. Also, abrupt terminations can result in lost requests and database connection issues.
+
+**Solution**: Implemented **PM2 Cluster Mode** and **Graceful Shutdown**.
+-   **Multi-Core Utilization**: PM2 scales the application across all available CPU cores, maximizing hardware efficiency.
+-   **Zero-Downtime Reloads**: Allows code deployment without dropping active connections.
+-   **Graceful Shutdown**: Intercepts system signals (`SIGINT`, `SIGTERM`) to stop accepting new requests, close database/redis connections, and finish active requests before exiting, ensuring no user data is lost during scaling or deployment.
+
 ---
 
 ## System Architecture
@@ -163,6 +172,8 @@ This project utilizes a focused selection of production-proven libraries:
 
 ### Development Utilities
 -   **Nodemon**: Utility for automatic server restarts during development.
+
+-   **PM2**: Advanced production process manager with built-in load balancer.
 -   **Jest**: JavaScript Testing Framework with a focus on simplicity.
 
 ### Logging
@@ -229,9 +240,22 @@ src/
     ```
 
 ### Docker Deployment
-The service is fully containerized.
+The service is fully containerized with **PM2 runtime** for production-grade process management.
 ```bash
 docker-compose up -d --build
+```
+
+**Monitoring & Management**:
+Since PM2 runs inside the container, use the following commands:
+```bash
+# Monitor CPU/Memory per instance
+docker exec -it user-api-app pm2 monit
+
+# View Logs
+docker exec user-api-app pm2 logs
+
+# Zero-Downtime Reload
+docker exec user-api-app pm2 reload ecosystem.config.js
 ```
 
 ---
