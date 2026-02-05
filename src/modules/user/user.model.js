@@ -64,7 +64,9 @@ userSchema.methods.getVerificationToken = function() {
     .digest('hex');
 
   // 3. Set expire (10 mins)
-  this.verificationTokenExpire = Date.now() + 10 * 60 * 1000;
+  // 3. Set expire (time in minutes from env * 60 * 1000)
+  const expiryMinutes = process.env.EMAIL_VERIFY_EXPIRY || 10;
+  this.verificationTokenExpire = Date.now() + expiryMinutes * 60 * 1000;
 
   // 4. Return original token (to send in email)
   return verificationToken;

@@ -34,6 +34,10 @@ exports.loginUser = async (userData) => {
     throw ApiError.notFound("Invalid email or pass");
   }
 
+    if (!userWithPassword.isEmailVerified) {
+    throw ApiError.forbidden("EMAIL_NOT_VERIFIED");
+  }
+
   const accessToken=jwtUtils.generateAccessToken(userWithPassword.id,userWithPassword.role);
 
   const refreshToken=jwtUtils.generateRefreshToken(userWithPassword.id,familyId);
