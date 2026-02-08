@@ -1,0 +1,89 @@
+Debug k6 Connectivity
+Load test failed with 100% error rate. Creating a connectivity_debug.js script to log the exact HTTP status and response body from the application to diagnose whether it's a network issue or an application error.
+
+Files Edited
+package.json
+debug.js
+Progress Updates
+1
+Creating debug script to identify failure reason
+
+It looks like the requests are failing (100% failure), but we don't know why. It could be:
+
+Network issue: k6 can't find the user-api-app container.
+Port issue: The app isn't listening on port 5000 inside the container.
+Application error: The app is rejecting the requests (e.g., validation error).
+I've created a debug command to print the actual error and response body.
+
+Please run this and tell me what the output says:
+
+bash
+npm run test:debug
+
+Fix k6 Scripts
+Identified 400 Bad Request due to extra confirmPassword field. Updating 
+utils.js
+ and 
+debug.js
+ to remove this field and align with the backend Zod schema.
+
+Files Edited
+debug.js
+utils.js
+Progress Updates
+1
+Updating k6 scripts to match API validation
+
+Ah, I found the issue!
+
+The error Unrecognized key(s) in object: 'confirmPassword' means your backend validation does not expect a confirmPassword field, but my script was sending it.
+
+I have fixed this in both utils.js (used by all tests) and debug.js.
+
+Please try running the debug test again to confirm it works:
+
+
+Great! The debug output shows Response Status: 200 and a valid user object in the body. This confirms:
+
+Connectivity is working: k6 can talk to your app.
+Registration is working: users are being created.
+The "failure" in the debug test was minimal: it expected a 201 Created status, but your API returns 200 OK. I have updated the tests (utils.js) to expect 200 to match your code.
+
+You are now ready to run the full benchmarks:
+
+
+Debug Load Test Failures
+Load test failed with high latency and 100% login failure. Investigating 
+auth.service.js
+ for login requirements (e.g., email verification) and checking global rate limiters that might be throttling the test clients.
+
+Progress Updates
+1
+Analyzing login logic and rate limiting configuration
+
+Update k6 Scripts for Email Verification
+Identified that email verification is required for login. Since the registration response includes the verificationToken, I will update the k6 
+utils.js
+ to extract this token and call the verification endpoint before attempting login.
+
+Files Edited
+utils.js
+Progress Updates
+1
+Verifying verification endpoint and updating utils.js
+
+I've identified the root cause of the failures: Login requires email verification, but the previous test script was skipping that step.
+
+I have updated the test script (utils.js) to:
+
+Register the user.
+Extract the verification token from the response.
+Verify the email.
+Login.
+I also corrected the login check because your API returns the token directly (e.g., { accessToken: ... }) instead of nested inside data.
+
+Please try running the load test again:
+
+
+d 
+

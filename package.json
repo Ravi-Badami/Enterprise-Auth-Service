@@ -4,7 +4,12 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --detectOpenHandles",
+    "test:load": "docker run --rm -i -v \"%cd%/performance:/performance\" --network identity-service_user-api-network -e BASE_URL=http://user-api-app:5000/api/v1 grafana/k6 run /performance/scenarios/load.js",
+    "test:debug": "docker run --rm -i -v \"%cd%/performance:/performance\" --network identity-service_user-api-network -e BASE_URL=http://user-api-app:5000/api/v1 grafana/k6 run /performance/scenarios/debug.js",
+    "test:stress": "docker run --rm -i -v \"%cd%/performance:/performance\" --network identity-service_user-api-network -e BASE_URL=http://user-api-app:5000/api/v1 grafana/k6 run /performance/scenarios/stress.js",
+    "test:spike": "docker run --rm -i -v \"%cd%/performance:/performance\" --network identity-service_user-api-network -e BASE_URL=http://user-api-app:5000/api/v1 grafana/k6 run /performance/scenarios/spike.js",
+    "test:soak": "docker run --rm -i -v \"%cd%/performance:/performance\" --network identity-service_user-api-network -e BASE_URL=http://user-api-app:5000/api/v1 grafana/k6 run /performance/scenarios/soak.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
