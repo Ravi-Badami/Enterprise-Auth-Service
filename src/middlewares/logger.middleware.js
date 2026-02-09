@@ -4,11 +4,11 @@ const requestLogger = (req, res, next) => {
   res.on('finish', () => {
     const duration = Date.now() - start;
     const message = `${req.method} ${req.originalUrl} ${res.statusCode} ${duration}ms`;
-    
+
     if (res.statusCode >= 400) {
-        logger.error(message);
+      logger.error(message);
     } else {
-        logger.http(message);
+      logger.http(message);
     }
   });
   next();

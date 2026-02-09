@@ -12,7 +12,7 @@ describe('User Integration Tests', () => {
     const res = await request(app).post('/api/v1/auth/register').send({
       email: 'user@example.com',
       password: 'password123',
-      name: 'Test User'
+      name: 'Test User',
     });
     userId = res.body._id;
   });
@@ -40,7 +40,7 @@ describe('User Integration Tests', () => {
     });
 
     test('should return 400 for invalid id format', async () => {
-        // Assuming validation middleware checks param format
+      // Assuming validation middleware checks param format
       const res = await request(app).get('/api/v1/users/invalid-id');
       expect(res.statusCode).toBe(400);
     });
@@ -50,7 +50,7 @@ describe('User Integration Tests', () => {
     test('should delete user', async () => {
       const res = await request(app).delete(`/api/v1/users/${userId}`);
       expect(res.statusCode).toBe(200);
-      
+
       const check = await request(app).get(`/api/v1/users/${userId}`);
       expect(check.statusCode).toBe(404);
     });

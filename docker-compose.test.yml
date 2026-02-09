@@ -5,11 +5,11 @@ services:
     image: mongo:6
     container_name: user-api-mongodb-test
     ports:
-      - "27018:27017"
+      - '27018:27017'
     environment:
       MONGO_INITDB_DATABASE: userdb-test
     tmpfs:
-      - /data/db  # In-memory database (faster, auto-wipes)
+      - /data/db # In-memory database (faster, auto-wipes)
 
   app-test:
     build: .

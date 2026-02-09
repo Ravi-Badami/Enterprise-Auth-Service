@@ -22,11 +22,11 @@ export default function () {
   }
 
   const authHeaders = { ...HEADERS, Authorization: `Bearer ${token}` };
-  
+
   const meRes = http.get(`${BASE_URL}/users/me`, { headers: authHeaders });
-  
+
   // Explicitly check for memory usage or degradation signals if possible,
   // but mostly relying on standard metrics stability over time.
-  
+
   sleep(Math.random() * (SLEEP_DURATION.MAX - SLEEP_DURATION.MIN) + SLEEP_DURATION.MIN);
 }

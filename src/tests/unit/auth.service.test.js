@@ -21,9 +21,9 @@ describe('Auth Service Unit Tests', () => {
       userRepo.findUserByEmail.mockResolvedValue(null);
       bcrypt.hash.mockResolvedValue('hashedPassword');
       authRepo.registerUser.mockImplementation(async (data) => ({
-          ...data,
-          _id: 'user123',
-          toObject: () => ({ ...data, _id: 'user123' })
+        ...data,
+        _id: 'user123',
+        toObject: () => ({ ...data, _id: 'user123' }),
       }));
 
       const result = await authService.registerUser(userData);
@@ -37,63 +37,70 @@ describe('Auth Service Unit Tests', () => {
 
     test('should throw conflict if email exists', async () => {
       userRepo.findUserByEmail.mockResolvedValue({ _id: '1' });
-      await expect(authService.registerUser({ email: 'test@test.com', password: '123' }))
-        .rejects.toThrow('Email already taken');
+      await expect(
+        authService.registerUser({ email: 'test@test.com', password: '123' })
+      ).rejects.toThrow('Email already taken');
     });
   });
 
   describe('loginUser', () => {
     test('should return tokens on successful login', async () => {
-        const userData = { email: 'test@test.com', password: 'password' };
-        const mockUser = { _id: 'user123', email: 'test@test.com', password: 'hashedPassword', role: 'user' };
-        
-        authRepo.findUserByEmailWithPassword.mockResolvedValue(mockUser);
-        bcrypt.compare.mockResolvedValue(true);
-        jwtUtils.generateFamilyId.mockReturnValue('family123');
-        jwtUtils.generateAccessToken.mockReturnValue('accessToken');
-        jwtUtils.generateRefreshToken.mockReturnValue('refreshToken');
-        
-        const result = await authService.loginUser(userData);
+      const userData = { email: 'test@test.com', password: 'password' };
+      const mockUser = {
+        _id: 'user123',
+        email: 'test@test.com',
+        password: 'hashedPassword',
+        role: 'user',
+      };
 
-        expect(result).toHaveProperty('accessToken', 'accessToken');
-        expect(result).toHaveProperty('refreshToken', 'refreshToken');
-        expect(authRepo.createTokenFamily).toHaveBeenCalled();
+      authRepo.findUserByEmailWithPassword.mockResolvedValue(mockUser);
+      bcrypt.compare.mockResolvedValue(true);
+      jwtUtils.generateFamilyId.mockReturnValue('family123');
+      jwtUtils.generateAccessToken.mockReturnValue('accessToken');
+      jwtUtils.generateRefreshToken.mockReturnValue('refreshToken');
+
+      const result = await authService.loginUser(userData);
+
+      expect(result).toHaveProperty('accessToken', 'accessToken');
+      expect(result).toHaveProperty('refreshToken', 'refreshToken');
+      expect(authRepo.createTokenFamily).toHaveBeenCalled();
     });
 
     test('should throw error on invalid credentials', async () => {
-        authRepo.findUserByEmailWithPassword.mockResolvedValue(null);
-        await expect(authService.loginUser({ email: 'wrong', password: 'wrong' }))
-            .rejects.toThrow('Invalid email or pass');
+      authRepo.findUserByEmailWithPassword.mockResolvedValue(null);
+      await expect(authService.loginUser({ email: 'wrong', password: 'wrong' })).rejects.toThrow(
+        'Invalid email or pass'
+      );
     });
   });
 
   describe('refreshAuth', () => {
-      test('should rotate tokens successfully (SCENARIO 4)', async () => {
-          const incomingToken = 'validRefToken';
-          const decoded = { id: 'user1', familyId: 'fam1' };
-          const family = { token: incomingToken, previousToken: 'oldToken' };
-          
-          jwtUtils.verifyRefreshToken.mockReturnValue(decoded);
-          authRepo.findTokenFamily.mockResolvedValue(family);
-          jwtUtils.generateRefreshToken.mockReturnValue('newRefToken');
-          jwtUtils.generateAccessToken.mockReturnValue('newAccessToken');
+    test('should rotate tokens successfully (SCENARIO 4)', async () => {
+      const incomingToken = 'validRefToken';
+      const decoded = { id: 'user1', familyId: 'fam1' };
+      const family = { token: incomingToken, previousToken: 'oldToken' };
 
-          const result = await authService.refreshAuth(incomingToken);
+      jwtUtils.verifyRefreshToken.mockReturnValue(decoded);
+      authRepo.findTokenFamily.mockResolvedValue(family);
+      jwtUtils.generateRefreshToken.mockReturnValue('newRefToken');
+      jwtUtils.generateAccessToken.mockReturnValue('newAccessToken');
 
-          expect(result).toEqual({ accessToken: 'newAccessToken', refreshToken: 'newRefToken' });
-          expect(authRepo.rotateToken).toHaveBeenCalled();
-      });
+      const result = await authService.refreshAuth(incomingToken);
 
-      test('should detect reuse and revoke family (SCENARIO 2)', async () => {
-          const incomingToken = 'stolenToken';
-          const decoded = { id: 'user1', familyId: 'fam1' };
-          const family = { token: 'currentToken', previousToken: 'prevToken' }; // Incoming doesn't match either
-          
-          jwtUtils.verifyRefreshToken.mockReturnValue(decoded);
-          authRepo.findTokenFamily.mockResolvedValue(family);
+      expect(result).toEqual({ accessToken: 'newAccessToken', refreshToken: 'newRefToken' });
+      expect(authRepo.rotateToken).toHaveBeenCalled();
+    });
 
-          await expect(authService.refreshAuth(incomingToken)).rejects.toThrow('Reuse detected');
-          expect(authRepo.revokeFamily).toHaveBeenCalledWith(decoded.familyId);
-      });
+    test('should detect reuse and revoke family (SCENARIO 2)', async () => {
+      const incomingToken = 'stolenToken';
+      const decoded = { id: 'user1', familyId: 'fam1' };
+      const family = { token: 'currentToken', previousToken: 'prevToken' }; // Incoming doesn't match either
+
+      jwtUtils.verifyRefreshToken.mockReturnValue(decoded);
+      authRepo.findTokenFamily.mockResolvedValue(family);
+
+      await expect(authService.refreshAuth(incomingToken)).rejects.toThrow('Reuse detected');
+      expect(authRepo.revokeFamily).toHaveBeenCalledWith(decoded.familyId);
+    });
   });
 });

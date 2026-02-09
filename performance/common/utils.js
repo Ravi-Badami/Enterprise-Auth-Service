@@ -25,11 +25,13 @@ export function generateUser() {
 // Helper to register and login a user
 export function authenticate() {
   const userData = generateUser();
-  
+
   // Register
   // 1. Register
-  const regRes = http.post(`${BASE_URL}/auth/register`, JSON.stringify(userData), { headers: HEADERS });
-  
+  const regRes = http.post(`${BASE_URL}/auth/register`, JSON.stringify(userData), {
+    headers: HEADERS,
+  });
+
   const isRegSuccess = check(regRes, {
     'register status is 200': (r) => r.status === 200,
   });
@@ -43,7 +45,9 @@ export function authenticate() {
 
   // 2. Verify Email
   if (verificationToken) {
-    const verifyRes = http.get(`${BASE_URL}/auth/verifyemail/${verificationToken}`, { headers: HEADERS });
+    const verifyRes = http.get(`${BASE_URL}/auth/verifyemail/${verificationToken}`, {
+      headers: HEADERS,
+    });
     check(verifyRes, {
       'verify email status is 200': (r) => r.status === 200,
     });
@@ -58,7 +62,7 @@ export function authenticate() {
   });
 
   const loginRes = http.post(`${BASE_URL}/auth/login`, loginPayload, { headers: HEADERS });
-  
+
   const isLoginSuccessful = check(loginRes, {
     'login status is 200': (r) => r.status === 200,
     'has access token': (r) => r.json('accessToken') !== undefined, // Changed from data.tokens.access.token based on likely structure, will verify

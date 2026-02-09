@@ -5,7 +5,7 @@ const redisClient = require('../config/redis');
 exports.authenticate = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
-    
+
     // Check if Authorization header exists and starts with Bearer
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       throw ApiError.unauthorized('Access token is missing or invalid');
@@ -13,7 +13,7 @@ exports.authenticate = async (req, res, next) => {
 
     // Extract the token
     const token = authHeader.split(' ')[1];
-    
+
     if (!token) {
       throw ApiError.unauthorized('Access token is missing');
     }
@@ -27,18 +27,17 @@ exports.authenticate = async (req, res, next) => {
       if (isBlacklisted) {
         throw ApiError.unauthorized('Token is revoked');
       }
-      
+
       // Attach user info (including role) to the request object
-      req.user = decoded; 
-      
+      req.user = decoded;
+
       next();
     } catch (error) {
-       if (error.name === 'TokenExpiredError') {
-          throw ApiError.unauthorized('Token has expired');
-       }
-       throw ApiError.unauthorized('Invalid token');
+      if (error.name === 'TokenExpiredError') {
+        throw ApiError.unauthorized('Token has expired');
+      }
+      throw ApiError.unauthorized('Invalid token');
     }
-
   } catch (error) {
     next(error);
   }

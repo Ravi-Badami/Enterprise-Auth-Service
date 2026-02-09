@@ -8,17 +8,17 @@ const createTransporter = async () => {
       port: process.env.SMTP_PORT,
       auth: {
         user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
+        pass: process.env.SMTP_PASS,
+      },
     });
-  } 
-  
+  }
+
   // Development: Use Ethereal
   const testAccount = await nodemailer.createTestAccount();
   return nodemailer.createTransport({
-    host: "smtp.ethereal.email",
+    host: 'smtp.ethereal.email',
     port: 587,
-    secure: false, 
+    secure: false,
     auth: {
       user: testAccount.user,
       pass: testAccount.pass,

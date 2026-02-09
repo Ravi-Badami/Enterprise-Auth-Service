@@ -2,7 +2,6 @@ const healthService = require('./health.service');
 const catchAsync = require('../../utils/asyncHandler');
 
 class HealthController {
-  
   /**
    * Liveness Probe
    * Simply returns 200 OK if the process is running
@@ -11,7 +10,7 @@ class HealthController {
     res.status(200).json({
       status: 'healthy',
       timestamp: new Date().toISOString(),
-      uptime_seconds: process.uptime()
+      uptime_seconds: process.uptime(),
     });
   };
 
@@ -23,9 +22,9 @@ class HealthController {
     // Run checks in parallel
     const [dbResult, redisResult] = await Promise.all([
       healthService.checkDatabase(),
-      healthService.checkRedis()
+      healthService.checkRedis(),
     ]);
-    
+
     // Get system info
     const systemInfo = healthService.getSystemInfo();
 
@@ -34,8 +33,8 @@ class HealthController {
       ...systemInfo,
       checks: {
         database: dbResult,
-        redis: redisResult
-      }
+        redis: redisResult,
+      },
     };
 
     // Determine overall status

@@ -13,7 +13,7 @@ exports.authorize = (allowedRoles) => {
 
     // 2. Check if user's role is in the allowedRoles array
     if (!allowedRoles.includes(req.user.role)) {
-       return next(ApiError.forbidden('You do not have permission to perform this action'));
+      return next(ApiError.forbidden('You do not have permission to perform this action'));
     }
 
     // 3. User is authorized

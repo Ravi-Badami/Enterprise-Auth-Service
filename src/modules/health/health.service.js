@@ -22,7 +22,9 @@ class HealthService {
       const dbCheckPromise = new Promise((resolve, reject) => {
         if (mongoose.connection.readyState === 1) {
           // Perform a lightweight admin ping for true readiness
-          mongoose.connection.db.admin().ping()
+          mongoose.connection.db
+            .admin()
+            .ping()
             .then(() => resolve(true))
             .catch((err) => reject(err));
         } else {
@@ -35,14 +37,14 @@ class HealthService {
       return {
         status: 'healthy',
         latency_ms: Date.now() - startTime,
-        error: null
+        error: null,
       };
     } catch (error) {
       logger.error('Health check failed: Database', { error: error.message });
       return {
         status: 'unhealthy',
         latency_ms: Date.now() - startTime,
-        error: error.message
+        error: error.message,
       };
     }
   }
@@ -65,14 +67,14 @@ class HealthService {
       return {
         status: 'healthy',
         latency_ms: Date.now() - startTime,
-        error: null
+        error: null,
       };
     } catch (error) {
       logger.error('Health check failed: Redis', { error: error.message });
       return {
         status: 'unhealthy',
         latency_ms: Date.now() - startTime,
-        error: error.message
+        error: error.message,
       };
     }
   }
@@ -87,7 +89,7 @@ class HealthService {
       timestamp: new Date().toISOString(),
       service: process.env.npm_package_name || 'identity-service',
       memory_usage: process.memoryUsage(),
-      cpu_usage: process.cpuUsage()
+      cpu_usage: process.cpuUsage(),
     };
   }
 }

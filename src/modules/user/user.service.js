@@ -21,7 +21,7 @@ exports.getUsers = async (query) => {
 
   const users = await repo.findUsers(filter, skip, limit);
   const total = await repo.countUsers();
-  
+
   // Calculate next cursor
   const nextCursor = users.length > 0 ? users[users.length - 1]._id : null;
 
@@ -31,28 +31,23 @@ exports.getUsers = async (query) => {
     page,
     limit,
     total,
-    totalPages: Math.ceil(total / limit)
+    totalPages: Math.ceil(total / limit),
   };
 };
 
-exports.getOneUser=async(id)=>{
-  if(!id) throw ApiError.badRequest("Id must be given");
-  const user=await repo.findUserById(id);
-  if(!user)throw ApiError.notFound("User not found");
+exports.getOneUser = async (id) => {
+  if (!id) throw ApiError.badRequest('Id must be given');
+  const user = await repo.findUserById(id);
+  if (!user) throw ApiError.notFound('User not found');
   return user;
+};
 
-}
-
-
-
-
-exports.deleteUser=async(id)=>{
+exports.deleteUser = async (id) => {
   logger.debug(`Deleting user with id: ${id}`);
-  if(id===undefined) throw ApiError.badRequest("Id is undefined");
-  
-  const deletedUser=await repo.deleteUser(id);
+  if (id === undefined) throw ApiError.badRequest('Id is undefined');
 
-if (!deletedUser)
-  throw ApiError.notFound("User not found");
+  const deletedUser = await repo.deleteUser(id);
+
+  if (!deletedUser) throw ApiError.notFound('User not found');
   return deletedUser;
-}
+};

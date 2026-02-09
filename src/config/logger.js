@@ -1,21 +1,20 @@
-const winston= require('winston');
+const winston = require('winston');
 
-const levels={
-  error:0,
-  warn:1,
-  info:2,
-  http:3,
-  debug:4,
-}
+const levels = {
+  error: 0,
+  warn: 1,
+  info: 2,
+  http: 3,
+  debug: 4,
+};
 
-// if the server was run in development mode; otherwise, 
+// if the server was run in development mode; otherwise,
 // if it was run in production, show only warn and error messages.
 const level = () => {
   const env = process.env.NODE_ENV || 'development';
   const isDevelopment = env === 'development';
   return isDevelopment ? 'debug' : 'warn';
 };
-
 
 const colors = {
   error: 'red',
@@ -25,7 +24,7 @@ const colors = {
   debug: 'white',
 };
 
-// Tell winston that you want to link the colors 
+// Tell winston that you want to link the colors
 winston.addColors(colors);
 
 // Chose the aspect of your log customizing the log format.
@@ -35,12 +34,8 @@ const format = winston.format.combine(
   // Tell Winston that the logs must be colored
   winston.format.colorize({ all: true }),
   // Define the format of the message showing the timestamp, the level and the message
-  winston.format.printf(
-    (info) => `${info.timestamp} ${info.level}: ${info.message}`,
-  ),
+  winston.format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`)
 );
-
-
 
 const transports = [
   // Allow the use the console to print the messages
@@ -55,7 +50,7 @@ const transports = [
   new winston.transports.File({ filename: 'logs/all.log' }),
 ];
 
-// Create the logger instance that has to be exported 
+// Create the logger instance that has to be exported
 // and used to log messages.
 const logger = winston.createLogger({
   level: level(),
