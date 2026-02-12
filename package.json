@@ -12,7 +12,7 @@
     "test:soak": "docker run --rm -i -v \"%cd%/performance:/performance\" --network identity-service_user-api-network -e BASE_URL=http://user-api-app:5000/api/v1 grafana/k6 run /performance/scenarios/soak.js",
     "lint": "eslint src",
     "format": "prettier --write .",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.js": [

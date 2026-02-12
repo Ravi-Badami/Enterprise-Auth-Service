@@ -43,3 +43,15 @@ exports.findUserByVerificationToken = async (token) => {
     verificationTokenExpire: { $gt: Date.now() },
   });
 };
+
+
+exports.findUserByResetToken = async (hashedToken) => {
+  return await User.findOne({
+    passwordResetToken: hashedToken,
+    passwordResetExpires: { $gt: Date.now() },
+  });
+};
+
+exports.revokeAllUserFamilies = async (userId) => {
+  await Token.deleteMany({ user: userId });
+};

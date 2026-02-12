@@ -29,3 +29,12 @@ exports.verifyEmail = asyncHandler(async (req, res) => {
     data: result,
   });
 });
+
+exports.forgotPassword = asyncHandler(async (req, res) => {
+  const result = await authService.forgotPassword(req.body.email);
+  res.status(200).json({ success: true, ...result });
+});
+exports.resetPassword = asyncHandler(async (req, res) => {
+  const result = await authService.resetPassword(req.params.token, req.body.password);
+  res.status(200).json({ success: true, ...result });
+});
