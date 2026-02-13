@@ -44,7 +44,6 @@ exports.findUserByVerificationToken = async (token) => {
   });
 };
 
-
 exports.findUserByResetToken = async (hashedToken) => {
   return await User.findOne({
     passwordResetToken: hashedToken,

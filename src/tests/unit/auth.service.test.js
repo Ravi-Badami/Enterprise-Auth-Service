@@ -24,6 +24,7 @@ describe('Auth Service Unit Tests', () => {
         ...data,
         _id: 'user123',
         toObject: () => ({ ...data, _id: 'user123' }),
+        getVerificationToken: jest.fn().mockReturnValue('verificationToken'),
       }));
 
       const result = await authService.registerUser(userData);
@@ -51,6 +52,7 @@ describe('Auth Service Unit Tests', () => {
         email: 'test@test.com',
         password: 'hashedPassword',
         role: 'user',
+        isEmailVerified: true,
       };
 
       authRepo.findUserByEmailWithPassword.mockResolvedValue(mockUser);

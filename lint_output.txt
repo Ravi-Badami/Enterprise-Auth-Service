@@ -1,0 +1,130 @@
+﻿
+> user-management-api@1.0.0 lint
+> eslint src
+
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\app.js
+  11:7  warning  'requestTimeout' is assigned a value but never used  no-unused-vars
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\config\db.js
+  13:5  error  Don't use process.exit(); throw an error instead  no-process-exit
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\middlewares\error.middleware.js
+   4:38  warning  'next' is defined but never used                                                                         no-unused-vars
+  65:5   error    Rest/spread properties are not supported until Node.js 8.3.0. The configured version range is '>=8.0.0'  node/no-unsupported-features/es-syntax
+  66:5   error    Rest/spread properties are not supported until Node.js 8.3.0. The configured version range is '>=8.0.0'  node/no-unsupported-features/es-syntax
+  76:5   error    Don't use process.exit(); throw an error instead                                                         no-process-exit
+  83:5   error    Don't use process.exit(); throw an error instead                                                         no-process-exit
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\middlewares\strictLimiter.middleware.js
+  33:1  error  Delete `ΓÅÄ`  prettier/prettier
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\middlewares\timeout.middleware.js
+  2:7  warning  'apiError' is assigned a value but never used  no-unused-vars
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\modules\auth\auth.controller.js
+  35:41  error  Rest/spread properties are not supported until Node.js 8.3.0. The configured version range is '>=8.0.0'  node/no-unsupported-features/es-syntax
+  39:41  error  Rest/spread properties are not supported until Node.js 8.3.0. The configured version range is '>=8.0.0'  node/no-unsupported-features/es-syntax
+  40:4   error  Insert `ΓÅÄ`                                                                                               prettier/prettier
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\modules\auth\auth.repo.js
+  47:1  error  Delete `ΓÅÄ`  prettier/prettier
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\modules\auth\auth.routes.js
+   5:8   error  Replace `┬╖createUserSchema,┬╖userLoginSchema,┬╖forgotPasswordLimiter,┬╖resetPasswordLimiter` with `ΓÅÄ┬╖┬╖createUserSchema,ΓÅÄ┬╖┬╖userLoginSchema,ΓÅÄ┬╖┬╖forgotPasswordLimiter,ΓÅÄ┬╖┬╖resetPasswordLimiter,ΓÅÄ`  prettier/prettier
+  22:13  error  Replace `ΓÅÄ┬╖┬╖'/forgot-password',┬╖ΓÅÄ┬╖┬╖forgotPasswordLimiter,┬╖ΓÅÄ┬╖┬╖authController.forgotPasswordΓÅÄ` with `'/forgot-password',┬╖forgotPasswordLimiter,┬╖authController.forgotPassword`                prettier/prettier
+  27:14  error  Replace `ΓÅÄ┬╖┬╖'/reset-password/:token',┬╖ΓÅÄ┬╖┬╖resetPasswordLimiter,┬╖ΓÅÄ┬╖┬╖authController.resetPasswordΓÅÄ` with `'/reset-password/:token',┬╖resetPasswordLimiter,┬╖authController.resetPassword`        prettier/prettier
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\modules\auth\auth.service.js
+  121:28  error    Rest/spread properties are not supported until Node.js 8.3.0. The configured version range is '>=8.0.0'  node/no-unsupported-features/es-syntax
+  138:5   error    Rest/spread properties are not supported until Node.js 8.3.0. The configured version range is '>=8.0.0'  node/no-unsupported-features/es-syntax
+  162:21  warning  '_' is assigned a value but never used                                                                   no-unused-vars
+  162:24  error    Rest/spread properties are not supported until Node.js 8.3.0. The configured version range is '>=8.0.0'  node/no-unsupported-features/es-syntax
+  227:3   error    Delete `┬╖`                                                                                               prettier/prettier
+  229:1   error    Delete `┬╖┬╖`                                                                                              prettier/prettier
+  235:1   error    Replace `┬╖┬╖┬╖┬╖` with `┬╖┬╖`                                                                                 prettier/prettier
+  247:1   error    Delete `┬╖┬╖┬╖┬╖`                                                                                            prettier/prettier
+  254:29  error    Replace `ΓÅÄ┬╖┬╖┬╖┬╖.createHash('sha256')ΓÅÄ┬╖┬╖┬╖┬╖.update(token)ΓÅÄ┬╖┬╖┬╖┬╖` with `.createHash('sha256').update(token)`  prettier/prettier
+  265:1   error    Delete `┬╖┬╖`                                                                                              prettier/prettier
+  269:1   error    Delete `┬╖┬╖`                                                                                              prettier/prettier
+  276:1   error    Delete `ΓÅÄ`                                                                                               prettier/prettier
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\modules\auth\auth.validation.js
+   1:24  error  Delete `ΓÉì`            prettier/prettier
+   2:1   error  Delete `ΓÉì`            prettier/prettier
+   3:30  error  'z' is not defined    no-undef
+   3:40  error  Delete `ΓÉì`            prettier/prettier
+   4:9   error  'z' is not defined    no-undef
+   4:19  error  Delete `ΓÉì`            prettier/prettier
+   5:12  error  'z' is not defined    no-undef
+   5:61  error  Delete `ΓÉì`            prettier/prettier
+   6:6   error  Delete `ΓÉì`            prettier/prettier
+   7:4   error  Delete `ΓÉì`            prettier/prettier
+   8:1   error  Delete `ΓÉì`            prettier/prettier
+   9:29  error  'z' is not defined    no-undef
+   9:39  error  Delete `ΓÉì`            prettier/prettier
+  10:9   error  'z' is not defined    no-undef
+  10:19  error  Delete `ΓÉì`            prettier/prettier
+  11:15  error  'z' is not defined    no-undef
+  11:75  error  Delete `ΓÉì`            prettier/prettier
+  12:6   error  Delete `ΓÉì`            prettier/prettier
+  13:11  error  'z' is not defined    no-undef
+  13:21  error  Delete `ΓÉì`            prettier/prettier
+  14:12  error  'z' is not defined    no-undef
+  14:67  error  Delete `ΓÉì`            prettier/prettier
+  15:6   error  Delete `ΓÉì`            prettier/prettier
+  16:4   error  Delete `ΓÉì`            prettier/prettier
+  17:19  error  Delete `ΓÉì`            prettier/prettier
+  18:30  error  Delete `ΓÉì`            prettier/prettier
+  19:24  error  Delete `ΓÉì`            prettier/prettier
+  20:22  error  Replace `ΓÉì` with `,`  prettier/prettier
+  21:3   error  Insert `ΓÅÄ`            prettier/prettier
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\modules\health\health.controller.js
+  33:7  error  Rest/spread properties are not supported until Node.js 8.3.0. The configured version range is '>=8.0.0'  node/no-unsupported-features/es-syntax
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\modules\health\health.service.js
+  3:24  error  "../../utils/logger" is not found  node/no-missing-require
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\modules\user\user.controller.js
+   1:7   warning  'ApiError' is assigned a value but never used  no-unused-vars
+   6:50  warning  'next' is defined but never used               no-unused-vars
+  11:49  warning  'next' is defined but never used               no-unused-vars
+  19:52  warning  'next' is defined but never used               no-unused-vars
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\modules\user\user.model.js
+  49:20  error  Delete `┬╖┬╖`                                                                                                        prettier/prettier
+  84:35  error  Replace `ΓÅÄ┬╖┬╖┬╖┬╖.createHash('sha256')ΓÅÄ┬╖┬╖┬╖┬╖.update(resetToken)ΓÅÄ┬╖┬╖┬╖┬╖` with `.createHash('sha256').update(resetToken)`  prettier/prettier
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\modules\user\user.service.js
+  2:7  warning  'bcrypt' is assigned a value but never used  no-unused-vars
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\server.js
+  35:7  error  Don't use process.exit(); throw an error instead  no-process-exit
+  38:7  error  Don't use process.exit(); throw an error instead  no-process-exit
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\tests\integration\auth.test.js
+   4:25  error    "supertest" is not published                   node/no-unpublished-require
+   6:7   warning  'mongoose' is assigned a value but never used  no-unused-vars
+  56:9   warning  Unexpected console statement                   no-console
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\tests\integration\health.test.js
+  1:25  error  "supertest" is not published  node/no-unpublished-require
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\tests\integration\setup.js
+  2:39  error  "mongodb-memory-server" is not published  node/no-unpublished-require
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\tests\integration\user.test.js
+  4:25  error  "supertest" is not published  node/no-unpublished-require
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\tests\unit\auth.service.test.js
+   6:7   warning  'ApiError' is assigned a value but never used                                                            no-unused-vars
+  24:9   error    Rest/spread properties are not supported until Node.js 8.3.0. The configured version range is '>=8.0.0'  node/no-unsupported-features/es-syntax
+  26:28  error    Rest/spread properties are not supported until Node.js 8.3.0. The configured version range is '>=8.0.0'  node/no-unsupported-features/es-syntax
+
+C:\Users\banu5\Desktop\Ravi\PERSONAL PROJECT\Nodejs\Enterprise-Auth-Service\src\tests\unit\middlewares.test.js
+  12:7  warning  'logger' is assigned a value but never used  no-unused-vars
+
+Γ£û 78 problems (65 errors, 13 warnings)
+  37 errors and 0 warnings potentially fixable with the `--fix` option.
+

@@ -46,7 +46,7 @@ const userSchema = new mongoose.Schema(
     passwordResetToken: {
       type: String,
       select: false, // Hide by default
-      index: true,   // Index for faster lookups
+      index: true, // Index for faster lookups
     },
     passwordResetExpires: Date,
   },
@@ -81,10 +81,7 @@ userSchema.methods.createPasswordResetToken = function () {
   // 1. Generate a secure random token (32 bytes = 64 hex chars)
   const resetToken = crypto.randomBytes(32).toString('hex');
   // 2. Hash it before saving to DB
-  this.passwordResetToken = crypto
-    .createHash('sha256')
-    .update(resetToken)
-    .digest('hex');
+  this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
   // 3. Set expiry (10 minutes)
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
   // 4. Return unhashed token to send via email

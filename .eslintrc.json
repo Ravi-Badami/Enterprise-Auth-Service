@@ -13,6 +13,14 @@
     "no-console": "warn",
     "no-unused-vars": "warn",
     "node/no-missing-require": "error",
+    "node/no-unpublished-require": [
+      "error",
+      {
+        "allowModules": ["supertest", "mongodb-memory-server"]
+      }
+    ],
+    "node/no-unsupported-features/es-syntax": "off",
+    "no-process-exit": "off",
     "prettier/prettier": "error"
   }
 }

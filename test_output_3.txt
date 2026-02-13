@@ -1,0 +1,335 @@
+﻿
+> user-management-api@1.0.0 test
+> jest --detectOpenHandles
+
+node.exe : FAIL src/te
+sts/unit/auth.service.
+test.js
+At C:\Program Files\no
+dejs\npm.ps1:29 char:3
++   & $NODE_EXE 
+$NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (FAIL src/t   
+ ests/unit/auth.se    
+rvice.test.js:Str    
+ing) [], RemoteEx    
+ception
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+  ΓùÅ Auth Service 
+Unit Tests ΓÇ║ 
+registerUser ΓÇ║ 
+should register a new 
+user
+
+    TypeError: user.ge
+tVerificationToken is 
+not a function
+
+    [0m [90m 140 
+|[39m
+     [90m 141 |[39m 
+  [90m// 2. Generate 
+Verification Token 
+(Updates the document 
+in memory)[39m
+    [31m[1m>[22m[3
+9m[90m 142 |[39m   
+[36mconst[39m 
+verificationToken 
+[33m=[39m user[33m.
+[39mgetVerificationTo
+ken()[33m;[39m
+     [90m     |[39m 
+                      
+           
+[31m[1m^[22m[39m
+     [90m 143 |[39m
+     [90m 144 |[39m 
+  [90m// 3. Save the 
+token to DB via 
+Repository[39m
+     [90m 145 |[39m 
+  [36mawait[39m auth
+Repo[33m.[39msaveUse
+r(user)[33m;[39m[0m
+
+      at Object.getVer
+ificationToken [as 
+registerUser] (src/mod
+ules/auth/auth.service
+.js:142:34)
+      at 
+Object.<anonymous> (sr
+c/tests/unit/auth.serv
+ice.test.js:29:22)
+
+  ΓùÅ Auth Service 
+Unit Tests ΓÇ║ 
+loginUser ΓÇ║ should 
+return tokens on 
+successful login
+
+    ApiError: 
+EMAIL_NOT_VERIFIED
+
+    [0m [90m 19 
+|[39m   [90m//403 - 
+Forbidden[39m
+     [90m 20 |[39m  
+ [36mstatic[39m 
+forbidden(message 
+[33m=[39m [32m'Forb
+idden'[39m) {
+    [31m[1m>[22m[3
+9m[90m 21 |[39m     
+[36mreturn[39m 
+[36mnew[39m [33mApi
+Error[39m([35m403[3
+9m[33m,[39m 
+message)[33m;[39m
+     [90m    |[39m  
+          
+[31m[1m^[22m[39m
+     [90m 22 |[39m  
+ }
+     [90m 23 |[39m  
+ [90m//404 - Not 
+Found[39m
+     [90m 24 |[39m  
+ [36mstatic[39m 
+notFound(message 
+[33m=[39m 
+[32m'Resource Not 
+Found'[39m) {[0m
+
+      at 
+Function.forbidden (sr
+c/utils/ApiError.js:21
+:12)
+      at 
+Object.forbidden (src/
+modules/auth/auth.serv
+ice.js:39:20)
+      at 
+Object.<anonymous> (sr
+c/tests/unit/auth.serv
+ice.test.js:62:22)
+
+PASS src/tests/unit/us
+er.service.test.js
+PASS src/tests/unit/ut
+ils.test.js
+PASS src/tests/unit/mi
+ddlewares.test.js
+FAIL src/tests/integra
+tion/user.test.js
+  ΓùÅ Test suite 
+failed to run
+
+    Route.post() 
+requires a callback 
+function but got a 
+[object Undefined]
+
+    [0m [90m 25 
+|[39m router[33m.[3
+9m[36mget[39m([32m'
+/auth/verifyemail/:tok
+en'[39m[33m,[39m au
+thController[33m.[39
+mverifyEmail)[33m;[3
+9m
+     [90m 26 |[39m
+    [31m[1m>[22m[3
+9m[90m 27 |[39m rout
+er[33m.[39mpost([32
+m'/forgot-password'[3
+9m[33m,[39m forgotPa
+sswordLimiter[33m,[3
+9m authController[33m
+.[39mforgotPassword)
+[33m;[39m
+     [90m    |[39m  
+      
+[31m[1m^[22m[39m
+     [90m 28 |[39m r
+outer[33m.[39mpatch(
+[32m'/reset-password/
+:token'[39m[33m,[39
+m resetPasswordLimiter
+[33m,[39m authContro
+ller[33m.[39mresetPa
+ssword)[33m;[39m
+     [90m 29 |[39m
+     [90m 30 |[39m m
+odule[33m.[39mexport
+s [33m=[39m 
+router[33m;[39m[0m
+
+      at 
+Route.<computed> [as 
+post] (node_modules/ex
+press/lib/router/route
+.js:216:15)
+      at Function.prot
+o.<computed> [as 
+post] (node_modules/ex
+press/lib/router/index
+.js:521:19)
+      at Object.post (
+src/modules/auth/auth.
+routes.js:27:8)
+      at 
+Object.require 
+(src/app.js:4:20)
+      at 
+Object.require (src/te
+sts/integration/user.t
+est.js:5:13)
+
+FAIL src/tests/integra
+tion/health.test.js
+  ΓùÅ Test suite 
+failed to run
+
+    TypeError: 
+mongoose.Schema is 
+not a constructor
+
+    [0m [90m 2 
+|[39m 
+[36mconst[39m 
+crypto [33m=[39m req
+uire([32m'crypto'[39
+m)[33m;[39m
+     [90m 3 |[39m
+    [31m[1m>[22m[3
+9m[90m 4 |[39m 
+[36mconst[39m 
+userSchema 
+[33m=[39m 
+[36mnew[39m mongoose
+[33m.[39m[33mSchema
+[39m(
+     [90m   |[39m   
+                 
+[31m[1m^[22m[39m
+     [90m 5 |[39m   
+{
+     [90m 6 |[39m   
+  name[33m:[39m {
+     [90m 7 |[39m   
+    type[33m:[39m [
+33mString[39m[33m,[
+39m[0m
+
+      at 
+Object.<anonymous> (sr
+c/modules/user/user.mo
+del.js:4:20)
+      at 
+Object.<anonymous> (sr
+c/modules/user/user.re
+po.js:1:37)
+      at 
+Object.<anonymous> (sr
+c/modules/user/user.se
+rvice.js:1:36)
+      at 
+Object.require (src/mo
+dules/user/user.contro
+ller.js:3:21)
+      at 
+Object.require (src/mo
+dules/user/user.routes
+.js:3:24)
+      at 
+Object.require 
+(src/app.js:3:20)
+      at 
+Object.require (src/te
+sts/integration/health
+.test.js:4:13)
+
+FAIL src/tests/integra
+tion/auth.test.js
+  ΓùÅ Test suite 
+failed to run
+
+    Route.post() 
+requires a callback 
+function but got a 
+[object Undefined]
+
+    [0m [90m 25 
+|[39m router[33m.[3
+9m[36mget[39m([32m'
+/auth/verifyemail/:tok
+en'[39m[33m,[39m au
+thController[33m.[39
+mverifyEmail)[33m;[3
+9m
+     [90m 26 |[39m
+    [31m[1m>[22m[3
+9m[90m 27 |[39m rout
+er[33m.[39mpost([32
+m'/forgot-password'[3
+9m[33m,[39m forgotPa
+sswordLimiter[33m,[3
+9m authController[33m
+.[39mforgotPassword)
+[33m;[39m
+     [90m    |[39m  
+      
+[31m[1m^[22m[39m
+     [90m 28 |[39m r
+outer[33m.[39mpatch(
+[32m'/reset-password/
+:token'[39m[33m,[39
+m resetPasswordLimiter
+[33m,[39m authContro
+ller[33m.[39mresetPa
+ssword)[33m;[39m
+     [90m 29 |[39m
+     [90m 30 |[39m m
+odule[33m.[39mexport
+s [33m=[39m 
+router[33m;[39m[0m
+
+      at 
+Route.<computed> [as 
+post] (node_modules/ex
+press/lib/router/route
+.js:216:15)
+      at Function.prot
+o.<computed> [as 
+post] (node_modules/ex
+press/lib/router/index
+.js:521:19)
+      at Object.post (
+src/modules/auth/auth.
+routes.js:27:8)
+      at 
+Object.require 
+(src/app.js:4:20)
+      at 
+Object.require (src/te
+sts/integration/auth.t
+est.js:5:13)
+
+Test Suites: 4 
+failed, 3 passed, 7 
+total
+Tests:       2 
+failed, 26 passed, 28 
+total
+Snapshots:   0 total
+Time:        7.988 s
+Ran all test suites.

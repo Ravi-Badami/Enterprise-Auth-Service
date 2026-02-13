@@ -3,25 +3,9 @@ const mongoose = require('mongoose');
 const redisClient = require('../../config/redis');
 const app = require('../../app');
 
-// Mock dependencies
-jest.mock('mongoose', () => ({
-  connection: {
-    readyState: 1,
-    db: {
-      admin: () => ({
-        ping: jest.fn().mockResolvedValue(true),
-      }),
-    },
-  },
-}));
+// Redis is already mocked in setup.js
+// Mongoose is set up in setup.js
 
-// Mock Redis to return the client implementation directly
-jest.mock('../../config/redis', () => ({
-  ping: jest.fn().mockResolvedValue('PONG'),
-  isOpen: true,
-  connect: jest.fn(),
-  on: jest.fn(),
-}));
 
 describe('Health Check API', () => {
   describe('GET /health/live', () => {

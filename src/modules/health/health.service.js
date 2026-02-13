@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const redisClient = require('../../config/redis');
-const logger = require('../../utils/logger');
+const logger = require('../../config/logger');
 
 // Configuration for timeouts
 const CHECK_TIMEOUT_MS = 5000;

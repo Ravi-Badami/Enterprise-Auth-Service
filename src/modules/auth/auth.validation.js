@@ -17,5 +17,5 @@ const resetPasswordSchema = z.object({
 module.exports = {
   // ... existing exports ...
   forgotPasswordSchema,
-  resetPasswordSchema
+  resetPasswordSchema,
 };

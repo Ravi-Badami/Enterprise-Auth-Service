@@ -1,0 +1,755 @@
+﻿
+> user-management-api@1.0.0 test
+> jest --detectOpenHandles
+
+node.exe : PASS src/te
+sts/unit/auth.service.
+test.js (6.216 s)
+At C:\Program Files\no
+dejs\npm.ps1:29 char:3
++   & $NODE_EXE 
+$NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: (PASS src/t   
+ ests/...st.js (6.    
+216 s):String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+PASS src/tests/integra
+tion/health.test.js
+  ΓùÅ Console
+
+    console.log
+      2026-02-13 
+00:27:49:2749 
+[31merror[39m: 
+[31mHealth check 
+failed: Database[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+          at async 
+Promise.all (index 0)
+
+    console.log
+      2026-02-13 
+00:27:49:2749 
+[31merror[39m: 
+[31mGET 
+/health/ready 503 
+8ms[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:27:49:2749 
+[31merror[39m: 
+[31mHealth check 
+failed: Redis[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+          at async 
+Promise.all (index 1)
+
+    console.log
+      2026-02-13 
+00:27:49:2749 
+[31merror[39m: 
+[31mGET 
+/health/ready 503 
+8ms[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+PASS src/tests/unit/us
+er.service.test.js
+PASS src/tests/unit/ut
+ils.test.js
+PASS src/tests/unit/mi
+ddlewares.test.js
+FAIL src/tests/integra
+tion/user.test.js 
+(17.485 s)
+  ΓùÅ Console
+
+    console.log
+      2026-02-13 
+00:27:56:2756 
+[31merror[39m: 
+[31m401 - Access 
+token is missing or 
+invalid - 
+/api/v1/users - GET - 
+::ffff:127.0.0.1[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:27:56:2756 
+[31merror[39m: 
+[31mGET 
+/api/v1/users 401 
+15ms[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:27:59:2759 
+[31merror[39m: 
+[31m401 - Access 
+token is missing or 
+invalid - /api/v1/user
+s?limit=1&page=1 - 
+GET - 
+::ffff:127.0.0.1[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:27:59:2759 
+[31merror[39m: 
+[31mGET /api/v1/users
+?limit=1&page=1 401 
+13ms[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:03:283 
+[31merror[39m: 
+[31m401 - Access 
+token is missing or 
+invalid - /api/v1/user
+s/698e22b74702c566d1aa
+abd5 - GET - 
+::ffff:127.0.0.1[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:03:283 
+[31merror[39m: 
+[31mGET /api/v1/users
+/698e22b74702c566d1aaa
+bd5 401 11ms[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:06:286 
+[31merror[39m: 
+[31m401 - Access 
+token is missing or 
+invalid - /api/v1/user
+s/invalid-id - GET - 
+::ffff:127.0.0.1[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:06:286 
+[31merror[39m: 
+[31mGET /api/v1/users
+/invalid-id 401 
+11ms[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:09:289 
+[31merror[39m: 
+[31m401 - Access 
+token is missing or 
+invalid - /api/v1/user
+s/698e22be4702c566d1aa
+abe1 - DELETE - 
+::ffff:127.0.0.1[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:09:289 
+[31merror[39m: 
+[31mDELETE /api/v1/us
+ers/698e22be4702c566d1
+aaabe1 401 6ms[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+  ΓùÅ User 
+Integration Tests ΓÇ║ 
+GET /api/v1/users ΓÇ║ 
+should return list of 
+users
+
+    expect(received).t
+oBe(expected) // 
+Object.is equality
+
+    Expected: 200
+    Received: 401
+
+    [0m [90m 25 
+|[39m     
+test([32m'should 
+return list of users'
+[39m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {
+     [90m 26 |[39m  
+     [36mconst[39m 
+res [33m=[39m 
+[36mawait[39m reques
+t(app)[33m.[39m[36m
+get[39m([32m'/api/v1
+/users'[39m)[33m;[3
+9m
+    [31m[1m>[22m[3
+9m[90m 27 |[39m     
+  expect(res[33m.[39
+mstatusCode)[33m.[39
+mtoBe([35m200[39m)[
+33m;[39m
+     [90m    |[39m  
+                      
+      
+[31m[1m^[22m[39m
+     [90m 28 |[39m  
+     expect(res[33m.
+[39mbody[33m.[39mdat
+a[33m.[39mlength)[3
+3m.[39mtoBeGreaterTha
+n([35m0[39m)[33m;[
+39m
+     [90m 29 |[39m  
+     expect(res[33m.
+[39mbody[33m.[39mdat
+a[[35m0[39m][33m.[
+39memail)[33m.[39mto
+Be([32m'user@example.
+com'[39m)[33m;[39m
+     [90m 30 |[39m  
+   })[33m;[39m[0m
+
+      at Object.toBe (
+src/tests/integration/
+user.test.js:27:30)
+
+  ΓùÅ User 
+Integration Tests ΓÇ║ 
+GET /api/v1/users ΓÇ║ 
+should support 
+pagination
+
+    expect(received).t
+oBe(expected) // 
+Object.is equality
+
+    Expected: 200
+    Received: 401
+
+    [0m [90m 32 
+|[39m     
+test([32m'should 
+support pagination'[3
+9m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {
+     [90m 33 |[39m  
+     [36mconst[39m 
+res [33m=[39m 
+[36mawait[39m reques
+t(app)[33m.[39m[36m
+get[39m([32m'/api/v1
+/users?limit=1&page=1'
+[39m)[33m;[39m
+    [31m[1m>[22m[3
+9m[90m 34 |[39m     
+  expect(res[33m.[39
+mstatusCode)[33m.[39
+mtoBe([35m200[39m)[
+33m;[39m
+     [90m    |[39m  
+                      
+      
+[31m[1m^[22m[39m
+     [90m 35 |[39m  
+     expect(res[33m.
+[39mbody[33m.[39mlim
+it)[33m.[39mtoBe([3
+5m1[39m)[33m;[39m
+     [90m 36 |[39m  
+   })[33m;[39m
+     [90m 37 |[39m  
+ })[33m;[39m[0m
+
+      at Object.toBe (
+src/tests/integration/
+user.test.js:34:30)
+
+  ΓùÅ User 
+Integration Tests ΓÇ║ 
+GET /api/v1/users/:id 
+ΓÇ║ should return 
+user by id
+
+    expect(received).t
+oBe(expected) // 
+Object.is equality
+
+    Expected: 200
+    Received: 401
+
+    [0m [90m 40 
+|[39m     
+test([32m'should 
+return user by 
+id'[39m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {
+     [90m 41 |[39m  
+     [36mconst[39m 
+res [33m=[39m 
+[36mawait[39m reques
+t(app)[33m.[39m[36m
+get[39m([32m`/api/v1
+/users/${userId}`[39m
+)[33m;[39m
+    [31m[1m>[22m[3
+9m[90m 42 |[39m     
+  expect(res[33m.[39
+mstatusCode)[33m.[39
+mtoBe([35m200[39m)[
+33m;[39m
+     [90m    |[39m  
+                      
+      
+[31m[1m^[22m[39m
+     [90m 43 |[39m  
+     expect(res[33m.
+[39mbody[33m.[39m_id
+)[33m.[39mtoBe(userI
+d)[33m;[39m
+     [90m 44 |[39m  
+   })[33m;[39m
+     [90m 45 
+|[39m[0m
+
+      at Object.toBe (
+src/tests/integration/
+user.test.js:42:30)
+
+  ΓùÅ User 
+Integration Tests ΓÇ║ 
+GET /api/v1/users/:id 
+ΓÇ║ should return 400 
+for invalid id format
+
+    expect(received).t
+oBe(expected) // 
+Object.is equality
+
+    Expected: 400
+    Received: 401
+
+    [0m [90m 47 
+|[39m       [90m// 
+Assuming validation 
+middleware checks 
+param format[39m
+     [90m 48 |[39m  
+     [36mconst[39m 
+res [33m=[39m 
+[36mawait[39m reques
+t(app)[33m.[39m[36m
+get[39m([32m'/api/v1
+/users/invalid-id'[39
+m)[33m;[39m
+    [31m[1m>[22m[3
+9m[90m 49 |[39m     
+  expect(res[33m.[39
+mstatusCode)[33m.[39
+mtoBe([35m400[39m)[
+33m;[39m
+     [90m    |[39m  
+                      
+      
+[31m[1m^[22m[39m
+     [90m 50 |[39m  
+   })[33m;[39m
+     [90m 51 |[39m  
+ })[33m;[39m
+     [90m 52 
+|[39m[0m
+
+      at Object.toBe (
+src/tests/integration/
+user.test.js:49:30)
+
+  ΓùÅ User 
+Integration Tests ΓÇ║ 
+DELETE 
+/api/v1/users/:id ΓÇ║ 
+should delete user
+
+    expect(received).t
+oBe(expected) // 
+Object.is equality
+
+    Expected: 200
+    Received: 401
+
+    [0m [90m 54 
+|[39m     
+test([32m'should 
+delete 
+user'[39m[33m,[39m 
+[36masync[39m () 
+[33m=>[39m {
+     [90m 55 |[39m  
+     [36mconst[39m 
+res [33m=[39m 
+[36mawait[39m reques
+t(app)[33m.[39m[36m
+delete[39m([32m`/api
+/v1/users/${userId}`[
+39m)[33m;[39m
+    [31m[1m>[22m[3
+9m[90m 56 |[39m     
+  expect(res[33m.[39
+mstatusCode)[33m.[39
+mtoBe([35m200[39m)[
+33m;[39m
+     [90m    |[39m  
+                      
+      
+[31m[1m^[22m[39m
+     [90m 57 |[39m
+     [90m 58 |[39m  
+     [36mconst[39m 
+check [33m=[39m 
+[36mawait[39m reques
+t(app)[33m.[39m[36m
+get[39m([32m`/api/v1
+/users/${userId}`[39m
+)[33m;[39m
+     [90m 59 |[39m  
+     expect(check[33m
+.[39mstatusCode)[33m
+.[39mtoBe([35m404[3
+9m)[33m;[39m[0m
+
+      at Object.toBe (
+src/tests/integration/
+user.test.js:56:30)
+
+FAIL src/tests/integra
+tion/auth.test.js 
+(14.233 s)
+  ΓùÅ Console
+
+    console.log
+      2026-02-13 
+00:28:14:2814 
+[31merror[39m: 
+[31m400 - Required, 
+Invalid email, 
+Password must be at 
+least 6 characters - 
+/api/v1/auth/register 
+- POST - 
+::ffff:127.0.0.1[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:14:2814 
+[31merror[39m: 
+[31mPOST 
+/api/v1/auth/register 
+400 21ms[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:17:2817 
+[31merror[39m: 
+[31m403 - 
+EMAIL_NOT_VERIFIED - 
+/api/v1/auth/login - 
+POST - 
+::ffff:127.0.0.1[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:17:2817 
+[31merror[39m: 
+[31mPOST 
+/api/v1/auth/login 
+403 74ms[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:20:2820 
+[31merror[39m: 
+[31m404 - Invalid 
+email or pass - 
+/api/v1/auth/login - 
+POST - 
+::ffff:127.0.0.1[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:20:2820 
+[31merror[39m: 
+[31mPOST 
+/api/v1/auth/login 
+404 61ms[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:23:2823 
+[31merror[39m: 
+[31m403 - 
+EMAIL_NOT_VERIFIED - 
+/api/v1/auth/login - 
+POST - 
+::ffff:127.0.0.1[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:23:2823 
+[31merror[39m: 
+[31mPOST 
+/api/v1/auth/login 
+403 61ms[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:23:2823 
+[31merror[39m: 
+[31m401 - Invalid 
+Refresh Token - 
+/api/v1/auth/refresh 
+- POST - 
+::ffff:127.0.0.1[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+    console.log
+      2026-02-13 
+00:28:23:2823 
+[31merror[39m: 
+[31mPOST 
+/api/v1/auth/refresh 
+401 6ms[39m
+
+      at Console.log (
+node_modules/winston/l
+ib/winston/transports/
+console.js:87:23)
+
+  ΓùÅ Auth 
+Integration Tests ΓÇ║ 
+POST 
+/api/v1/auth/login 
+ΓÇ║ should login 
+successfully
+
+    expect(received).t
+oBe(expected) // 
+Object.is equality
+
+    Expected: 200
+    Received: 403
+
+    [0m [90m 68 
+|[39m       
+})[33m;[39m
+     [90m 69 |[39m
+    [31m[1m>[22m[3
+9m[90m 70 |[39m     
+  expect(res[33m.[39
+mstatusCode)[33m.[39
+mtoBe([35m200[39m)[
+33m;[39m
+     [90m    |[39m  
+                      
+      
+[31m[1m^[22m[39m
+     [90m 71 |[39m  
+     expect(res[33m.
+[39mbody)[33m.[39mto
+HaveProperty([32m'acc
+essToken'[39m)[33m;
+[39m
+     [90m 72 |[39m  
+     expect(res[33m.
+[39mbody)[33m.[39mto
+HaveProperty([32m'ref
+reshToken'[39m)[33m;
+[39m
+     [90m 73 |[39m  
+   })[33m;[39m[0m
+
+      at Object.toBe (
+src/tests/integration/
+auth.test.js:70:30)
+
+  ΓùÅ Auth 
+Integration Tests ΓÇ║ 
+POST 
+/api/v1/auth/refresh 
+ΓÇ║ should refresh 
+token
+
+    expect(received).t
+oBe(expected) // 
+Object.is equality
+
+    Expected: 200
+    Received: 401
+
+    [0m [90m 112 
+|[39m
+     [90m 113 |[39m 
+      [90m// 
+Assuming the 
+controller extracts 
+it efficiently.[39m
+    [31m[1m>[22m[3
+9m[90m 114 |[39m    
+   expect(res[33m.[3
+9mstatusCode)[33m.[3
+9mtoBe([35m200[39m)
+[33m;[39m
+     [90m     |[39m 
+                      
+       
+[31m[1m^[22m[39m
+     [90m 115 |[39m 
+      expect(res[33m.
+[39mbody)[33m.[39mt
+oHaveProperty([32m'ac
+cessToken'[39m)[33m;
+[39m
+     [90m 116 |[39m 
+      expect(res[33m.
+[39mbody)[33m.[39mt
+oHaveProperty([32m're
+freshToken'[39m)[33m
+;[39m
+     [90m 117 |[39m 
+    })[33m;[39m[0m
+
+      at Object.toBe (
+src/tests/integration/
+auth.test.js:114:30)
+
+Test Suites: 2 
+failed, 5 passed, 7 
+total
+Tests:       7 
+failed, 35 passed, 42 
+total
+Snapshots:   0 total
+Time:        42.1 s
+Ran all test suites.

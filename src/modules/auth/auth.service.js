@@ -145,7 +145,7 @@ exports.registerUser = async (userData) => {
   await authRepo.saveUser(user);
 
   // 4. Send Verification Email
-  const verifyUrl = `${process.env.BASE_URL || 'http://localhost:5000'}/api/v1/auth/verifyemail/${verificationToken}`;
+  const verifyUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/auth/verify-email/${verificationToken}`;
 
   try {
     await sendEmail({
@@ -224,15 +224,15 @@ exports.forgotPassword = async (email) => {
   const resetToken = user.createPasswordResetToken();
   // 3. Save user via Repository (CORRECTED)
   await authRepo.saveUser(user);
-   // 4. Send Email
+  // 4. Send Email
   const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:3000'}/reset-password/${resetToken}`;
-  
+
   const message = `
     You are receiving this email because you (or someone else) have requested the reset of a password for your account.
     Please make a PUT request to: \n\n ${resetUrl} \n\n
     This link is valid for 10 minutes.
   `;
-    try {
+  try {
     await sendEmail({
       email: user.email,
       subject: 'Password Reset Token',
@@ -244,17 +244,14 @@ exports.forgotPassword = async (email) => {
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await authRepo.saveUser(user); // CORRECTED
-    
+
     throw new ApiError(500, 'Email could not be sent');
   }
 };
 
 exports.resetPassword = async (token, newPassword) => {
   // 1. Hash incoming token
-  const hashedToken = crypto
-    .createHash('sha256')
-    .update(token)
-    .digest('hex');
+  const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
   // 2. Find user via Repository
   const user = await authRepo.findUserByResetToken(hashedToken);
   if (!user) {
@@ -262,15 +259,14 @@ exports.resetPassword = async (token, newPassword) => {
   }
   // 3. Update Password
   user.password = await bcrypt.hash(newPassword, 10);
-  
+
   // 4. Clear reset fields
   user.passwordResetToken = undefined;
   user.passwordResetExpires = undefined;
-  
+
   // 5. Save via Repository
   await authRepo.saveUser(user);
   // 6. Revoke all sessions via Repository
   await authRepo.revokeAllUserFamilies(user._id);
   return { message: 'Password reset successful' };
 };
-
